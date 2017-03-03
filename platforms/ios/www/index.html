@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <!--   <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *"> -->
+  <meta http-equiv="Content-Security-Policy" content="default-src gap://ready file://* *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *">
+
+    <title></title>
+
+    
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/chat.css" rel="stylesheet">
+    <link href="css/map.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/hscrollcards.css" />
+
+   <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">-->
+    <link href="https://rawgit.com/pierre-vigier/intlpnIonic/master/css/intlpn.css" rel="stylesheet" />
+    <!--<link href="lib/ionic/css/intlpn.css" rel="stylesheet">-->
+    <!-- ionic/angularjs js -->
+    
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/pouchdb/dist/pouchdb.min.js"></script>
+    <script src="lib/pouchdb/dist/pouchdb.localstorage.js"></script>
+    <script src="lib/pouchdb/dist/pouchdb.find.js"></script>
+    <script src="lib/pouchdb/dist/pouchdb.find.min.js"></script>
+
+    <script src="lib/angular-pouchdb/angular-pouchdb.min.js"></script>
+
+    <!-- Angular ngCordova / cordova script (this will be a 404 during development) -->
+    <script src="lib/cordova/ng-cordova.min.js"></script>
+    <!-- <script src="cordova.js"></script> -->
+    
+    <script src="lib/ionic/js/jquery-1.11.1.js"></script>
+    <script src="lib/ionic/js/jquery-1.11.3.min.js"></script>
+    <script src="lib/libphonenumber/dist/libphonenumber.js"></script>
+    <script src="lib/ionic/js/utils.js"></script>
+    <script src="lib/ionic/js/data.js"></script>
+    <script src="lib/ionic/js/intlpnIonic.js"></script>
+     <script src="lib/ionic-native-transitions.js"></script>
+    <script src="lib/moment/moment.min.js"></script>
+        <script src="lib/moment/moment-timezone.min.js"></script>
+
+    <script src="lib/moment/angular-moment.min.js"></script>
+    <script src="lib/ionic-zoom-view.js"></script>
+    <script src="lib/ioniclazyloading.js"></script>
+    <script src="lib/imgcache.js"></script>
+    <!--<script src="js/push.js"></script>-->
+    <script src="lib/ionic/js/Animate.js"></script>
+    <script src="lib/ionic/js/Scroller.js"></script>
+    <script src="lib/angular-bash64.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="lib/angular-socket-io/socket.js"></script>
+    <script src='lib/ionic.hscrollcards.js'></script>
+    <!-- cordova script (this will be a 404 during development) -->
+      <script src="cordova.js"></script> 
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers/IntroCtrl.js"></script>
+    <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/controllers/LoginCtrl.js"></script>
+    <script src="js/controllers/ContactCtrl.js"></script>
+    <script src="js/controllers/ContactNoCtrl.js"></script>
+    <script src="js/controllers/ChatsCtrl.js"></script>
+    <script src="js/controllers/ChatingCtrl.js"></script>
+    <script src="js/controllers/toUserProfileCtrl.js"></script>
+    <script src="js/controllers/UserProfileCtrl.js"></script>
+    <script src="js/controllers/GroupChatingCtrl.js"></script>
+    <script src="js/controllers/AddGroupCtrl.js"></script>
+    <script src="js/controllers/CreateGroupCtrl.js"></script>
+    <script src="js/controllers/GroupChatingCtrl.js"></script>
+    <script src="js/services/services.js"></script>
+    <script src="js/services/couchDB-services.js"></script>
+    <script src="js/services/contacts-services.js"></script>
+
+    <script src="js/services/socket.js"></script>
+    <script src="js/services/socket.io.js"></script>
+
+     <!-- google maps javascript -->    
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+  </head>
+   <body ng-app="starter" class="platform-ios platform-cordova platform-webview">
+    <ion-nav-bar class="bar-stable" align-title="center">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+             
+    <ion-nav-view></ion-nav-view>
+
+    <div id="fb-root"></div>
+    <script src="lib/facebookConnectPlugin.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,190 @@
+<ion-view id="userMessagesView" cache-view="false" >
+    <!--<i class='icon ion-chatbubble user-messages-top-icon'></i> <div class='msg-header-username'>{{toUser.username}}</div>-->
+    <ion-nav-title>
+        <div class="clear">
+            <a class="button ion-chevron-left button-clear pull-left chat-back"  ng-click="myGoBack();"></a>
+            <div class="header-user pull-left"><img  actual-src="{{_toUserDetail.avatar}}" height="100%" ng-src="images/mail_defoult.png"></div> 
+            <a class="pull-left" ng-click="showprofile()"><div class="header-details" style="text-align:left">{{_toUserDetail.name}}<span id="chatstatus">{{isTyping}}</span></div></a>
+            
+            <div class="pull-right buttons">
+                <button ng-click="popover.show($event)" class="button button-icon ion-paperclip"></button><!--popover.show($event)-->
+            </div>
+        </div>
+    </ion-nav-title>
+    <div class="loader-center" ng-if="!doneLoading">
+        <div class="loader">
+            <i class="icon ion-loading-c"></i>
+        </div>
+    </div>
+    <ion-content has-bouncing="true" class="chat-conteinar has-header has-footer" >
+         <ion-refresher
+          pulling-text="Loading Chats..."
+          on-refresh="getMessages(offset)">
+        </ion-refresher>
+        <!-- <div class="section-header"><span>yesterday</span></div> -->
+        
+          <div ng-repeat="message in messages" class="message-wrapper" on-hold="onMessageHold($event, $index, message)">
+                  <div ng-if="user._id !== message.senderId && message.imgFlag==0">
+                      <img class="profile-pic left" 
+                          actual-src="{{_toUserDetail.avatar}}"  ng-src="images/mail_defoult.png"  onerror="onProfilePicError(this)" />
+                      <div class="chat-bubble left">
+                          <div class="message" ng-bind-html="message.text" autolinker>
+                          </div>
+                          <div class="message-detail">
+                              <span ng-click="viewProfile(message)" 
+                                  class="bold">{{_toUserDetail.name}}</span>,
+                              <span am-time-ago="message.date"></span>
+                          </div>
+                      </div>
+                  </div>
+                  <div ng-if="user._id === message.senderId && message.imgFlag==0">
+                        <img class="profile-pic right" 
+                          actual-src="{{user.pic}}"  ng-src="images/mail_defoult.png" onerror="onProfilePicError(this)" />
+                        <div class="chat-bubble right">
+                          <div class="message" ng-bind-html="message.text" autolinker>
+                          </div>
+                          <div class="message-detail">
+                              <span ng-click="viewProfile(message)" 
+                                  class="bold">{{user.username}}</span>, 
+                              <span am-time-ago="message.date"></span>
+                          </div>
+                        </div>
+                  </div>
+
+                  <div ng-if="user._id !== message.senderId  && message.imgFlag==1">
+                    <img class="profile-pic left"
+                    actual-src="{{_toUserDetail.avatar}}" onerror="onProfilePicError(this)" ng-src="images/mail_defoult.png"/>
+                    <div class="chat-bubble left share-image">
+                        <div class="image-chat">
+                            <!-- <button class="button button-icon {{downloadButton}} download-button" ng-click="showLoader()"><i class="ion-arrow-down-a"></i> 16MB</button> 
+                            <div id="startup" class="{{progressLoader}} download-loader">
+                                <svg class="spinner-container" width="50px" height="50px" viewBox="0 0 52 52">
+                                    <circle class="path" cx="26px" cy="26px" r="20px" fill="none" stroke-width="4px" />
+                                </svg>
+                                <button class="button button-icon stop-download {{stopDownload}}" ng-click="stopDownloading()"><i class="ion-close"></i></button>
+                            </div>-->
+                            <img data-ng-src="{{message.text}}"  height="200" width="200" />
+                        </div>
+                        <div class="message-detail clear">
+                            <span ng-click="viewProfile(message)" class="bold pull-left">{{_toUserDetail.name}}</span>
+                            <span am-time-ago="message.date" class="pull-right"></span>
+                        </div>
+                      </div>
+                  </div>
+                  <div ng-if="user._id === message.senderId  && message.imgFlag==1">
+                    <img class="profile-pic right"
+                    actual-src="{{user.pic}}" onerror="onProfilePicError(this)" ng-src="images/mail_defoult.png"/>
+                    <div class="chat-bubble right share-image">
+                        <div class="image-chat">
+                          <button class="button button-icon  download-button" ng-click="imageDownload(message)"   id="download_{{message._id}}" ng-if="message.isDownload=='0'"><i class="ion-arrow-down-a"></i>{{formatNumber(message.imageSize)}} kb</button>
+
+                          <div id="loader_{{message._id}}" style="display:none" class=" download-loader">
+                                {{downloadProgress | limitTo:4}} %
+                                  <!-- <svg class="spinner-container" width="50px" height="50px" viewBox="0 0 52 52">
+                                    as
+                                    
+                                  </svg> -->
+                                  
+                          </div>
+                          <!--   <button class="button button-icon {{downloadButton}} download-button" ng-click="imageZoom(message.text)"><i class="ion-arrow-down-a"></i> Zoom</button> -->
+                            <img data-ng-src="{{message.text}}"  height="200" width="200" />
+                        </div>
+                        <div class="message-detail clear">
+                            <span ng-click="viewProfile(message)" class="bold pull-left">{{user.username}}</span>
+                            <span am-time-ago="message.date" class="pull-right"></span>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div ng-if="user._id !== message.senderId  && message.imgFlag==2">
+                    <img class="profile-pic left"
+                    actual-src="{{_toUserDetail.avatar}}" onerror="onProfilePicError(this)" ng-src="images/mail_defoult.png"/>
+                    <div class="chat-bubble left location-map">
+                        <div id="map" ng-click="openMap(message.text.lat,message.text.long)" class="location-map" lat="message.text.lat" lng="message.text.long" zoom="8" map>
+                        </div>
+                      
+                        <div class="message-detail clear">
+                            <span ng-click="viewProfile(message)" class="bold pull-left">{{_toUserDetail.name}}</span>
+                            <span am-time-ago="message.date" class="pull-right"></span>
+                        </div>
+                    </div>
+                  </div>
+                  <div ng-if="user._id === message.senderId  && message.imgFlag==2">
+                    <img class="profile-pic right"
+                    actual-src="{{user.pic}}" onerror="onProfilePicError(this)" ng-src="images/mail_defoult.png"/>
+                    <div class="chat-bubble right location-map">
+                         <div id="map" ng-click="openMap(message.text.lat,message.text.long)" class="location-map" lat="message.text.lat" lng="message.text.long" zoom="8" map>
+                        </div>
+                        <div class="message-detail clear">
+                            <span ng-click="viewProfile(message)" class="bold pull-left">{{user.username}}</span>
+                            <span am-time-ago="message.date" class="pull-right"></span>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div ng-if="user._id !== message.senderId && message.imgFlag==3">
+                      <img class="profile-pic left" 
+                          actual-src="{{_toUserDetail.avatar}}"  ng-src="images/mail_defoult.png"  onerror="onProfilePicError(this)" />
+                          <div class="chat-bubble left clear contact-bubble" ng-click="saveContact(message.text)">
+                           <div class="contact-bubble clear">
+                            <div class="row nopadding"> 
+                              <div class="col col-35 nopadding">
+                                <img src="images/mail_defoult.png" height="45px" class="contact-thumb">
+                              </div>
+                              <div class="col col-65 nopadding">
+                                <div class="contact-name-no">
+                                  <div class="contact-name-no-in">
+                                    <p>{{message.text.displayName}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="message-detail">
+                              <span ng-click="viewProfile(message)" 
+                                  class="bold">{{_toUserDetail.name}}</span>,
+                              <span am-time-ago="message.date"></span>
+                          </div>
+                      </div>
+                  </div>
+                  <div ng-if="user._id === message.senderId && message.imgFlag==3">
+                        <img class="profile-pic right" 
+                          actual-src="{{user.pic}}"  ng-src="images/mail_defoult.png" onerror="onProfilePicError(this)" />
+                        <div class="chat-bubble right clear contact-bubble">
+                          <div class="contact clear">
+                            <div class="row nopadding"> 
+                              <div class="col col-25 nopadding">
+                                <img src="images/mail_defoult.png" height="45px" class="contact-thumb">
+                              </div>
+                              <div class="col col-75 nopadding">
+                                <div class="contact-name-no">
+                                  <div class="contact-name-no-in">
+                                    <p>{{message.text.displayName}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="message-detail">
+                              <span ng-click="viewProfile(message)" 
+                                  class="bold">{{user.username}}</span>, 
+                              <span am-time-ago="message.date"></span>
+                          </div>
+                        </div>
+                  </div>
+                <div class="cf"></div>
+          </div>
+       
+    </ion-content>
+    <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate>
+        <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+            <label class="item-input-wrapper">
+                <textarea ng-model="input.message" ng-keyup="typingMessage()"  value="" placeholder="Send {{toUser.username}} a message..." required minlength="1" maxlength="1500" msd-elastic>
+                </textarea>
+            </label>
+            <div class="footer-btn-wrap">
+                <button class="button button-icon icon ion-android-send footer-btn" type="submit" ng-disabled="!input.message || input.message === ''"></button>
+            </div>
+        </ion-footer-bar>
+    </form>
+</ion-view>

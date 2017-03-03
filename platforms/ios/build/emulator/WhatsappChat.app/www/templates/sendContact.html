@@ -1,0 +1,24 @@
+
+<ion-modal-view>
+    <ion-header-bar class="bar-stable" align-title="center">
+      <button class="button ion-chevron-left button-clear pull-left chat-back" ng-click="closeModal()"></button>
+      <h1 class="title">Share Contact</h1>
+    </ion-header-bar>
+    <ion-content scroll="false">
+    <div class="list padding contact-data" >
+      <a class="item item-avatar" style="width:100%" href="#">
+        <img ng-src="images/mail_defoult.png">
+        {{displayName}}
+      </a>
+      <a ng-if="contactNumber!=null" class="item item-avatar" style="width:100%" href="#">
+        {{contactNumber}}
+      </a>
+   </div>
+     <div class="bar bar-footer button-bar ">
+       <div class="button-bar">
+        <a class="button button-clear" ng-click="closeModal()">CANCEL</a>
+        <a class="button button-clear" ng-click="isSendContact()">SEND</a>
+      </div>
+    </ion-content>
+
+</ion-modal-view>

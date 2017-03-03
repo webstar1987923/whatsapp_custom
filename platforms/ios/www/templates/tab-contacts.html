@@ -1,0 +1,31 @@
+
+<ion-view view-title="Contacts"  ng-init="getContact('0')" ng-Controller="MainCtrl">
+    <ion-nav-buttons side="right">
+     <ion-spinner icon="android" class="updatespinner" ng-if="isLoadUpdateSpinner" ></ion-spinner>
+        <button class="button button-icon icon ion-android-more-vertical" ng-click="popover.show($event)"></button>
+        </ion-nav-buttons>
+    <ion-content has-bouncing="true" >
+        <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="Search" data-ng-model="searchForce">
+                </label>
+        <ion-spinner icon="android" ng-show="myValue" class="ng-hide"></ion-spinner>
+        <ion-list>
+            <!--<div class="item item-divider">A</div>-->
+          <ion-item class="item-remove-animate item-avatar item-icon-right row custom-list " collection-repeat="contact in results |filter:searchForce" ng-click="chating(contact.doc)" > 
+                <div class="col col-25">
+                  <label data-letters="{{contact.doc.name | limitTo:1 | uppercase}}" ng-if="!contact.doc.avatar" ></label>
+                  <img ng-if="contact.doc.avatar" actual-src="{{contact.doc.avatar}}" ng-src="images/user-default.png" height="50"/>
+                </div>
+                <div class="col col-75">
+                    <h2>{{contact.doc.name}}</h2>
+                    <span class="cell-time" ng-if="contact.doc.isUser==1">Mobile</span>
+                    <span class="cell-time" ng-if="contact.doc.isUser!=1">Invite</span>
+                    <p ng-if="contact.doc.isUser==1">{{contact.doc.status}}</p>
+                    <p ng-if="contact.doc.isUser!=1">{{contact.doc.phone}}</p>
+                </div>
+          </ion-item>
+                           
+        </ion-list>
+    </ion-content>
+</ion-view>

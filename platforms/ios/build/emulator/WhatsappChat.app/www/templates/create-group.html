@@ -1,0 +1,44 @@
+<ion-view view-title="New group" ng-Controller="MainCtrl"  cache-view="false"  hide-back-button="true" ng-init="getContact('creategroup')">
+   <ion-nav-buttons side="left">
+    <button class="button button-icon" ng-click="myGoBack()"> <i class="ion-chevron-left  "></i></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon" ng-click="createGroup()" ng-disabled="isCreateButtonDisable"> <i class="ion-android-done" ></i> Create</button>
+  </ion-nav-buttons>
+
+    <ion-content class="padding" scroll="false">
+        <ion-scroll direction="x" class="wide-as-needed">
+         <a href="" ng-repeat="item in groupMemberContact"><img  actual-src="{{item.avatar}}" ng-src="images/user-default.png" height="50"/></a>
+         <!--  <a href="" ng-repeat="item in groupMemberContact">{{item.name}}</a>    -->
+        </ion-scroll>
+        <div class="list">
+            <div class="row">
+              <div class="col custom-input">
+                 <input type="text" ng-model="data.searchContact"  name="searchContact" placeholder="Enter the name to find" ng-change="searchData()">
+              </div>
+            </div>
+        </div>
+    </ion-content>
+    
+     <ion-content class="padding" scroll="true" style="top:{{TopHeader}}">
+         <div class="list alpha_list" data-ng-repeat="(letter, authors) in sorted_users " >
+            <div class="item item-divider" id="index_{{letter}}" >
+                {{letter}}
+            </div>  
+            <li class="item item-avatar-left item-checkbox  custom-item row custom-list" ng-repeat="author in authors ">
+                <div class="col col-25">
+                 <!--  <label ng-if="!author.doc.avatar" data-letters="{{author.doc.name | limitTo:1 | uppercase}}" ></label>
+                  <img ng-if="author.doc.avatar" actual-src="{{author.doc.avatar}}" ng-src="images/user-default.png" height="50"/> -->
+                </div>
+                <div class="col col-75">
+                     <label class="checkbox">
+                         <input type="checkbox"  ng-model="author.checked" ng-checked="author.checked" ng-change="addContact(author)">
+                    </label>
+                    <h2>{{ author.doc.name }} </h2>
+                    <p>Juhu! I am Doing it</p>
+                </div>
+            </li>    
+        </div> 
+    </ion-content>
+  </ion-content>
+</ion-view>

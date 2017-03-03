@@ -1,0 +1,24 @@
+<ion-view view-title="New group" ng-Controller="MainCtrl"  cache-view="false"    hide-back-button="true">
+   <ion-nav-buttons side="left">
+    <button class="button button-icon" ng-click="myGoBack()"> <i class="ion-chevron-left  "></i></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon" ng-click="nextStep()"> <i class="ion-android-done" ></i> Next</button>
+  </ion-nav-buttons>
+    <ion-content class="padding" scroll="false">
+        <div class="row">
+          <div class="col col-33">
+                <div class="group-icon" ng-click="uploadImage()">
+                    <img actual-src="{{data.profileImage}}" ng-src="img/img_placeholder.png" height="150px">
+                </div>
+          </div>
+          <div class="col col-67"><h4>Please provide group icon and group subject </h4></div>
+        </div>
+        <div class="row">
+          <div class="col custom-input">
+             <input type="text" ng-model="data.groupName" name="groupName" placeholder="Enter Your Group Subject ">
+          </div>
+        </div>
+
+    </ion-content>
+</ion-view>

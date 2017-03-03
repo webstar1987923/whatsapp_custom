@@ -1,0 +1,54 @@
+<ion-view view-title="Profile" hide-back-button="false" >
+	<ion-nav-buttons side="right">
+    <!--
+    <button class="button button-icon" ng-click="editProfile()">
+      <li class="ion-edit" style="font-size:24px; color:#ffffff;"></li>
+    </button>
+    -->
+    </ion-nav-buttons>
+  <ion-content has-bouncing="false">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="false">
+      <ion-slide>
+        <div class="box blue"><img ng-src="{{_toUserDetail.avatar}}"></div>
+        <div class="profile-pic-opts">
+          <h1 class="text-left">{{_toUserDetail.name}}<span>Created by </span></h1>
+          <!--
+          <button ng-click="picLike()" class="like-pic"><i data-tags="love" data-pack="default" class="ion-heart"></i></button>
+          <button ng-click="picDislike()" class="dislike-pic"><i data-tags="delete, trash, kill, x" data-pack="default" class="ion-close"></i></button>
+          -->
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    <ion-list>
+        <div class="participants ">
+            <div class="row">
+                <div class="col col-50">
+                  <p>Participants</p>
+                </div> 
+                <div class="col col-50">
+                  <p style="text-align:right">{{groupMember.length}} of 250</p>
+                </div> 
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                 <p> <i class="icon ion-android-person-add"></i> &nbsp;Add participant...</p>
+                </div> 
+            </div>
+        </div>
+        <ion-item class="item-remove-animate item-avatar item-icon-right  row custom-list"  type="item-text-wrap" force-refresh-images="true" ng-repeat="item in groupMember">
+            <div class="col col-25">
+              <label  data-letters="N"></label>
+             <!--   <img ng-if="chatlist.avatar" actual-src="{{chatlist.avatar}}" ng-src="images/user-default.png" height="50"/> -->
+            </div>
+            <div class="col col-75">
+                <h2>{{item.name}}</h2>
+<!--                 <span class="cell-time group-admin">Group Admin</span>
+ -->                <p>Hey There i'm using SOTERIA</p>
+             </div>
+        </ion-item> 
+
+    </ion-list>
+  </ion-content>
+</ion-view>

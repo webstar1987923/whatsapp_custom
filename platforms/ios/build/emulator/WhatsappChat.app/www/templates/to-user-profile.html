@@ -1,0 +1,133 @@
+<ion-view view-title="Profile" hide-back-button="false" >
+	<ion-nav-buttons side="right">
+    <!--
+    <button class="button button-icon" ng-click="editProfile()">
+      <li class="ion-edit" style="font-size:24px; color:#ffffff;"></li>
+    </button>
+    -->
+    </ion-nav-buttons>
+  <ion-content has-bouncing="false">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="false">
+      <ion-slide>
+        <div class="box blue"><img ng-src="{{toUserProfileImage}}"></div>
+        <div class="profile-pic-opts">
+            <h1 class="text-left">{{toUserProfileName}}<span>last seen today at 1:28 PM</span></h1>
+          <!--
+          <button ng-click="picLike()" class="like-pic"><i data-tags="love" data-pack="default" class="ion-heart"></i></button>
+          <button ng-click="picDislike()" class="dislike-pic"><i data-tags="delete, trash, kill, x" data-pack="default" class="ion-close"></i></button>
+          -->
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    <div class="profile-info">
+      <div class="profile-info-section">
+        <div class="info-sec-header row">
+          <div class="section-icon col-10 text-center">
+            <i class="ion-ios-briefcase"></i>
+          </div>
+          <div class="section-name col-90">
+            Work
+          </div>
+        </div>
+        <div class="info-sec-content row">
+          <div class="info-sec-content-in">
+              {{toUserProfileworkAt}}
+          </div>
+        </div>
+      </div>
+      <!--<div class="profile-info-section">
+        <div class="info-sec-header row">
+          <div class="section-icon col-10 text-center">
+            <i class="ion-ios-location"></i>
+          </div>
+          <div class="section-name col-90">
+            Current Location (79 km away)
+          </div>
+        </div>
+        <div class="info-sec-content row">
+          <div class="info-sec-content-in">
+            Bedi Bandar, Gujarat
+          </div>
+        </div>
+      </div>-->
+      <!--<div class="profile-info-section">
+        <div class="info-sec-header row">
+          <div class="section-icon col-10 text-center">
+            <i class="ion-ios-cart"></i>
+          </div>
+          <div class="section-name col-90">
+            Gifts
+          </div>
+        </div>
+        <div class="info-sec-content row">
+          <div class="info-sec-content-in">
+            <div class="gift-pic">
+              <div class="choose-gift-pic">
+                <a href="javascript:void(0);">
+                  <i class="ion-android-add"></i>
+                </a>
+              </div>
+            </div>
+            Send a gift and chat straight away!
+          </div>
+        </div>
+      </div>-->
+     <!--  <div class="profile-info-section">
+        <div class="info-sec-header row">
+          <div class="section-icon col-10 text-center">
+            <i class="ion-thumbsup"></i>
+          </div>
+          <div class="section-name col-90">
+            Interests
+          </div>
+        </div> -->
+       <!--  <div class="info-sec-content row">
+          <div class="info-sec-content-in">
+            <div class="interests clearfix">
+              <span>Cinema</span>
+              <span>Mountains</span>
+              <span>Shopping</span>
+              <span>Pizza</span>
+              <span>Dogs</span>
+              <span>Listening Music</span>
+              <span>Horror films</span>
+            </div>  
+          </div>
+        </div> -->
+      </div>
+      <!--<div class="profile-info-section">
+        <div class="info-sec-header row">
+          <div class="section-icon col-10 text-center">
+            <i class="ion-social-buffer"></i>
+          </div>
+          <div class="section-name col-90">
+            Score
+          </div>
+        </div>
+        <div class="info-sec-content row">
+          <div class="info-sec-content-in clearfix score-content">
+            <span class="score pull-left">0.00</span>&nbsp;<span pul-left> She doesn't have a score yet.</span>
+          </div>
+        </div>
+      </div>-->
+      <div class="profile-info-section">
+        <div class="info-sec-header row">
+          <div class="section-icon col-10 text-center">
+            <i class="ion-information-circled"></i>
+          </div>
+          <div class="section-name col-90">
+            About me
+          </div>
+        </div>
+        <div class="info-sec-content row">
+          <div class="info-sec-content-in clearfix about-info">
+              {{toUserProgileAbout}}
+           <!--  <span>I'm here to: </span>Date with a guy, 18-32
+            <br />
+            <span>Relationship: </span>I'm single -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

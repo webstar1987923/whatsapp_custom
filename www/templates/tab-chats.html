@@ -1,0 +1,30 @@
+<ion-view view-title="Chats">
+    <ion-nav-buttons side="right">
+     <!-- <ion-spinner icon="android" class="updatespinner" ng-if="isLoadUpdateSpinner" ></ion-spinner> -->
+        <button class="button button-icon icon ion-android-more-vertical" ng-click="popover.show($event)"></button>
+    </ion-nav-buttons>
+
+    <!--
+     <ion-nav-buttons side="left">
+     <button class="button button-icon icon  ion-chevron-left" ng-click="goBack()" >Back</button>
+     </ion-nav-buttons>
+     -->
+    <ion-content has-bouncing="true">
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right  row custom-list" collection-repeat="chatlist in perviouschat | orderBy:'time':true"  type="item-text-wrap" ng-click="chating(chatlist)" force-refresh-images="true">
+                <div class="col col-25">
+                  <label ng-if="!chatlist.avatar" data-letters="{{chatlist.name | limitTo:1 | uppercase}}" ng-if="!contact.doc.avatar" ></label>
+                  <!-- <image-lazy-cached  ng-if="chatlist.avatar" image-lazy-src="{{chatlist.avatar}}" image-lazy-loader="none" image-lazy-distance-from-bottom-to-load="10"></image-lazy-cached> -->
+                   <img ng-if="chatlist.avatar" actual-src="{{chatlist.avatar}}" ng-src="images/user-default.png" height="50"/>
+                </div>
+                <div class="col col-75">
+                   <h2>{{chatlist.name}}</h2>
+                    <span class="cell-time">{{chatlist.time}}</span>
+                    <p ng-bind-html="getMessage(chatlist)"></p>
+                    <span class="badge badge-assertive" style="top:35px" ng-if="chatlist.readUnreadFlg>0">{{chatlist.readUnreadFlg}}</span>
+                </div>
+
+            </ion-item>    
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,60 @@
+<ion-view view-title="Profile" hide-back-button="false">
+	<ion-nav-buttons side="left">
+  	<button class="user-profile-back-btn button icon" ng-click="goBack();"><i class="icon ion-chevron-left" style="font-size:18px !important;"></i></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+  	<button class="user-profile-back-btn button icon" ng-click="saveProfile()"><i class="icon ion-paper-airplane" style="font-size:18px !important;"></i></button>
+  </ion-nav-buttons>
+  <ion-content has-bouncing="false">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="false">
+      <ion-slide>
+         
+        <div class="box blue"><img actual-src="{{update_profile.avatar}}" ng-src="images/mail_defoult.png"></div>
+       <!--   <div class="box blue"><img ng-src="{{picdata}}"></div>-->
+        <div class="profile-pic-opts">
+          <button ng-click="editprofile()" class="pull-right button button-icon icon ion-edit edit-button"></button>
+        </div>
+      </ion-slide>
+      <!--<ion-slide>
+        <div class="box blue"><img src="img/perry.png" /></div>
+        <div class="profile-pic-opts">
+          <button ng-click="editProfile()" class="pull-right button button-icon icon ion-edit edit-button"></button>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="box blue"><img src="img/mike.png" /></div> 
+        <div class="profile-pic-opts">
+          <button ng-click="editProfile()" class="pull-right button button-icon icon ion-edit edit-button"></button>
+        </div>
+      </ion-slide>-->
+    </ion-slide-box>
+    <div class="card">
+		  <div class="item item-text-wrap clear">
+      	<h2>Name</h2>
+		    <p><input style="border-top:1px solid #e7e7e7; margin-top:5px; padding:5px 0px; background-color:#fff;" type="text" placeholder="Last Name" ng-model="update_profile.name" name="name"></p>
+        
+		  </div>
+		</div>
+    <div class="card">
+		  <div class="item item-text-wrap clear">
+      	<h2 class="profile-sec-head">Status<span class="pull-right" style="text-transform:uppercase;">14 February 2015</span></h2>
+        <p>
+        <textarea style="border-top:1px solid #e7e7e7; margin-top:5px; padding:5px 0px;; background-color:#fff; resize:none; height:60px; line-height:20px;" placeholder="status" class="full-width status" ng-model="update_profile.status" name="status"></textarea>
+        </p>
+		  </div>
+		</div>
+    <div class="card">
+		  <div class="item item-text-wrap clear">
+      	<h2>About</h2>
+        <textarea style="border-top:1px solid #e7e7e7; margin-top:5px; padding:5px 0px; background-color:#fff; resize:none; height:160px; line-height:20px;" placeholder="about" class="full-width status" ng-model="update_profile.about" name="about"></textarea>
+		  </div>
+		</div>
+    <div class="card">
+      <div class="item item-text-wrap clear">
+        <h2>Phone Number</h2>
+       <p><lable style="border-top:1px solid #e7e7e7; margin-top:5px; padding:5px 0px; background-color:#fff;">{{update_profile.phone}}</lable></p>
+      </div>
+    </div>
+       <!-- <div class="box blue"><img ng-src="https://farm9.staticflickr.com/8455/8048926748_1bc624e5c9_d.jpg"></div>-->
+  </ion-content>
+</ion-view>

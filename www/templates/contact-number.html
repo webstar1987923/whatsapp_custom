@@ -1,0 +1,16 @@
+<ion-view view-title="Verify Contact" ng-Controller="MainCtrl">
+    <ion-content class="padding" scroll="false">
+        <div class="card">
+            
+            <form name="country" >
+                <div class="item item-divider">
+                    All countries
+                </div>
+                <intlpn ng-model="model.field" placeholder="Enter Mobile Number" default-country="in" autofocus="true" ></intlpn>
+                <button class="button button-block button-positive" type="submit" ng-click="verifyContact(model.field)"
+                    ng-disabled="!model.field ||  model.field === ''">Verify
+                </button>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>
